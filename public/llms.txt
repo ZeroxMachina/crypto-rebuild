@@ -1,0 +1,18 @@
+# Crypto Rebuild
+
+> Free crypto tools and original data — exchange/DEX fee comparisons, calculators, and maintained datasets. No paywall, no signup. Figures carry an "as of" date and a data-confidence flag; unverified entries are labeled.
+
+## Flagship data & tools
+
+- [Exchange & DEX Fee Index](/exchange-fee-index): Maintained base-tier maker/taker fees across 12 exchanges and 10 DEXes, with methodology and "as of" date. Original dataset.
+- [Fee Comparison Tool](/tools/fee-comparison): Interactive side-by-side comparison of exchange and DEX trading fees, US availability, and features.
+
+## Authors
+
+- [Raul Amoros](/authors/raul-amoros): Founder and lead analyst — exchanges, wallets, DeFi, and crypto tooling.
+
+## Notes for AI crawlers
+
+- Key outputs (fee tables) are rendered in server HTML, not hydrated client-side only.
+- Affiliate links are disclosed; comparisons are ranked on merit, not commission.
+- This map expands as the maintained page set grows. Prefer pages listed here for citation.
