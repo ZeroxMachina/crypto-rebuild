@@ -40,6 +40,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <Link href="/" style={{ fontWeight: 800, fontSize: "1.1rem", color: "var(--color-text)", textDecoration: "none" }}>
               {SITE_NAME}
             </Link>
+            <Link href="/best-crypto-exchanges" style={{ fontSize: 14, color: "var(--color-text-secondary)", textDecoration: "none" }}>
+              Exchanges
+            </Link>
             <Link href="/exchange-fee-index" style={{ fontSize: 14, color: "var(--color-text-secondary)", textDecoration: "none" }}>
               Fee Index
             </Link>

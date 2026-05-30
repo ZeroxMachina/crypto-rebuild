@@ -71,6 +71,53 @@ export function generateBreadcrumbSchema(items: { name: string; url: string }[])
   };
 }
 
+export function generateReviewSchema(input: {
+  itemName: string;
+  itemType?: string;
+  url: string;
+  rating: number;
+  bestRating?: number;
+  author: string;
+  datePublished: string;
+  reviewBody: string;
+}): Schema {
+  return {
+    "@context": "https://schema.org",
+    "@type": "Review",
+    itemReviewed: { "@type": input.itemType ?? "FinancialService", name: input.itemName },
+    url: input.url,
+    reviewRating: {
+      "@type": "Rating",
+      ratingValue: input.rating,
+      bestRating: input.bestRating ?? 5,
+      worstRating: 0,
+    },
+    author: { "@type": "Person", name: input.author, url: `${SITE_URL}/authors/raul-amoros` },
+    publisher: { "@type": "Organization", name: SITE_NAME, url: SITE_URL },
+    datePublished: input.datePublished,
+    reviewBody: input.reviewBody,
+  };
+}
+
+export function generateItemListSchema(input: {
+  name: string;
+  description: string;
+  items: { name: string; url: string }[];
+}): Schema {
+  return {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    name: input.name,
+    description: input.description,
+    itemListElement: input.items.map((it, i) => ({
+      "@type": "ListItem",
+      position: i + 1,
+      name: it.name,
+      url: it.url,
+    })),
+  };
+}
+
 export function serializeSchema(schema: Schema | Schema[]): string {
   return JSON.stringify(Array.isArray(schema) ? schema : [schema]);
 }
