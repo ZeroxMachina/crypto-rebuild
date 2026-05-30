@@ -46,11 +46,16 @@ function feePositioning(taker: number): string {
 }
 
 function buildVerdict(e: Exchange): string {
-  const reg = e.regulated ? "a regulated" : "an";
-  const pub = e.publicCompany ? ", publicly listed," : "";
+  const descriptors = [
+    e.regulated ? "regulated" : null,
+    e.publicCompany ? "publicly listed" : null,
+  ].filter(Boolean) as string[];
+  const descr = descriptors.length ? descriptors.join(", ") + " " : "";
+  const hasPlaceHQ = !/\bno\b|n\/a|global hq/i.test(e.headquarters);
+  const hq = hasPlaceHQ ? ` and headquartered in ${e.headquarters}` : "";
   return (
-    `${e.name}, founded in ${e.founded} and headquartered in ${e.headquarters}, is ${reg}${pub} ` +
-    `crypto exchange that earns ${e.rating.toFixed(1)} out of 5 in our assessment. It is best suited for ${e.bestFor.toLowerCase()}. ` +
+    `${e.name}, founded in ${e.founded}${hq}, is a ${descr}crypto exchange that earns ${e.rating.toFixed(1)} out of 5 in our assessment. ` +
+    `It is best suited for ${e.bestFor.toLowerCase()}. ` +
     `Its base-tier spot taker fee of ${pct(e.spotFee.taker)} sits ${feePositioning(e.spotFee.taker)} (${pct(AVG_TAKER)}). ` +
     `${US_SENTENCE[e.usAvailability]}, and ${KYC_SENTENCE[e.kyc]}.`
   );
